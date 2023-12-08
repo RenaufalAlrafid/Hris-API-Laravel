@@ -1,0 +1,403 @@
+
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Cuti API",
+        "version": "1.0.0",
+        "description": "API documentation for Cuti"
+    },
+    "servers": [
+        {"url":"http://localhost"}
+    ],
+    "paths": {
+        "/cuti": {
+            "post" : {
+                "description": "Create new Cuti",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "requestBody":{
+                    "description": "Create New Cuti",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "employee_id" : {
+                                        "type": "integer"
+                                    },
+                                    "date_start" :{
+                                        "type": "string"
+                                    },
+                                    "date_end" :{
+                                        "type": "string"
+                                    },
+                                    "days" :{
+                                        "type": "integer"
+                                    },
+                                    "description" :{
+                                        "type": "string"
+                                    },
+                                    "approve_hrd" :{
+                                        "type": "boolean"
+                                    },
+                                    "approve_atasan" :{
+                                        "type": "boolean"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201" :{
+                        "description": "Success Create Cuti",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "employee_id" : {
+                                                    "type": "integer"
+                                                },
+                                                "date_start" :{
+                                                    "type": "string"
+                                                },
+                                                "date_end" :{
+                                                    "type": "string"
+                                                },
+                                                "days" :{
+                                                    "type": "integer"
+                                                },
+                                                "description" :{
+                                                    "type": "string"
+                                                },
+                                                "approve_hrd" :{
+                                                    "type": "boolean"
+                                                },
+                                                "approve_atasan" :{
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get" : {
+                "description": "Get All Cuti",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "Success Get All Cuti",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "properties": {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "employee_id" : {
+                                                    "type": "integer"
+                                                },
+                                                "date_start" :{
+                                                    "type": "string"
+                                                },
+                                                "date_end" :{
+                                                    "type": "string"
+                                                },
+                                                "days" :{
+                                                    "type": "integer"
+                                                },
+                                                "description" :{
+                                                    "type": "string"
+                                                },
+                                                "approve_hrd" :{
+                                                    "type": "boolean"
+                                                },
+                                                "approve_atasan" :{
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
+                                        },
+                                        "meta" :{
+                                            "type":"object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cuti/{id}":{
+            "put" : {
+                "description": "Update Cuti",
+                "parameters": [
+                    {
+                        "name" : "Authorization",
+                        "in" : "header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update Cuti",
+                    "content": {
+                        "application/json" : {
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "employee_id" : {
+                                        "type": "integer"
+                                    },
+                                    "date_start" :{
+                                        "type": "string"
+                                    },
+                                    "date_end" :{
+                                        "type": "string"
+                                    },
+                                    "days" :{
+                                        "type": "integer"
+                                    },
+                                    "description" :{
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success update Cuti",
+                        "content": {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" :"object",
+                                    "properties": {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "employee_id" : {
+                                                    "type": "integer"
+                                                },
+                                                "date_start" :{
+                                                    "type": "string"
+                                                },
+                                                "date_end" :{
+                                                    "type": "string"
+                                                },
+                                                "days" :{
+                                                    "type": "integer"
+                                                },
+                                                "description" :{
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "Get Cuti",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200" : {
+                        "description": "Success Get Cuti",
+                        "content": {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" :"object",
+                                    "properties": {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "employee_id" : {
+                                                    "type": "integer"
+                                                },
+                                                "date_start" :{
+                                                    "type": "string"
+                                                },
+                                                "date_end" :{
+                                                    "type": "string"
+                                                },
+                                                "days" :{
+                                                    "type": "integer"
+                                                },
+                                                "description" :{
+                                                    "type": "string"
+                                                },
+                                                "approve_hrd" :{
+                                                    "type": "boolean"
+                                                },
+                                                "approve_atasan" :{
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete" : {
+                "description": "Remove Cuti",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in" :"header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200" :{
+                        "description": "Success Remove Cuti",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type":"object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "boolean"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cuti/{employee_id}":{
+            "get": {
+                "description": "Get Cuti",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "employee_id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200" : {
+                        "description": "Success Get Cuti",
+                        "content": {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" :"object",
+                                    "properties": {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "employee_id" : {
+                                                    "type": "integer"
+                                                },
+                                                "date_start" :{
+                                                    "type": "string"
+                                                },
+                                                "date_end" :{
+                                                    "type": "string"
+                                                },
+                                                "days" :{
+                                                    "type": "integer"
+                                                },
+                                                "description" :{
+                                                    "type": "string"
+                                                },
+                                                "approve_hrd" :{
+                                                    "type": "boolean"
+                                                },
+                                                "approve_atasan" :{
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cutivalidation/hrd/{user_id}/{id}" :{
+            "patch":{
+                
+            }
+        }
+    }
+    
+}

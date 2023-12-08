@@ -1,0 +1,295 @@
+
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Jabatan API",
+        "version": "1.0.0",
+        "description": "API documentation for jabatan"
+    },
+    "servers": [
+        {"url":"http://localhost"}
+    ],
+    "paths": {
+        "/jabatan": {
+            "post" : {
+                "description": "Create new Jabatan",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "requestBody":{
+                    "description": "Create new Jabatan",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "divisi_id": {
+                                        "type": "integer"
+                                    },
+                                    "atasan": {
+                                        "type": "boolean"
+                                    },
+                                    "validator" :{
+                                        "type": "boolean"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201" :{
+                        "description": "Success create divisi",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "divisi_id": {
+                                                    "type": "integer"
+                                                },
+                                                "atasan": {
+                                                    "type": "boolean"
+                                                },
+                                                "validator" :{
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get" : {
+                "description": "Get All Jabatan",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "Success Get All Jabatan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "properties": {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "divisi_id": {
+                                                    "type": "integer"
+                                                },
+                                                "atasan": {
+                                                    "type": "boolean"
+                                                },
+                                                "validator" :{
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
+                                        },
+                                        "meta" :{
+                                            "type":"object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/jabatan/{id}":{
+            "put" : {
+                "description": "Update Jabatan",
+                "parameters": [
+                    {
+                        "name" : "Authorization",
+                        "in" : "header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update Jabatan",
+                    "content": {
+                        "application/json" : {
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "divisi_id": {
+                                        "type": "integer"
+                                    },
+                                    "atasan": {
+                                        "type": "boolean"
+                                    },
+                                    "validator" :{
+                                        "type": "boolean"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success update jabatan",
+                        "content": {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" :"object",
+                                    "properties": {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "divisi_id": {
+                                                    "type": "integer"
+                                                },
+                                                "atasan": {
+                                                    "type": "boolean"
+                                                },
+                                                "validator" :{
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "Get Jabatan",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200" : {
+                        "description": "Success Get Jabatan",
+                        "content": {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" :"object",
+                                    "properties": {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                },
+                                                "divisi_id": {
+                                                    "type": "integer"
+                                                },
+                                                "atasan": {
+                                                    "type": "boolean"
+                                                },
+                                                "validator" :{
+                                                    "type": "boolean"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete" : {
+                "description": "Remove Jabatan",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in" :"header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200" :{
+                        "description": "Success Remove Jabatan",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type":"object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "boolean"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}

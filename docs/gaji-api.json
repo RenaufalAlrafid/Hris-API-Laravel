@@ -1,0 +1,398 @@
+
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Gaji API",
+        "version": "1.0.0",
+        "description": "API documentation for Gaji"
+    },
+    "servers": [
+        {"url":"http://localhost"}
+    ],
+    "paths": {
+        "/gaji": {
+            "post" : {
+                "description": "Create new Gaji",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "requestBody":{
+                    "description": "Create New Gaji",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "tahun": {
+                                        "type": "integer"
+                                    },
+                                    "bulan":{
+                                        "type": "integer"
+                                    },
+                                    "employee_id" : {
+                                        "type": "integer"
+                                    },
+                                    "gaji_pokok" :{
+                                        "type": "integer"
+                                    },
+                                    "tambahan" :{
+                                        "type": "integer"
+                                    },
+                                    "potongan" :{
+                                        "type": "integer"
+                                    },
+                                    "total" :{
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201" :{
+                        "description": "Success Create Gaji",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "tahun": {
+                                                    "type": "integer"
+                                                },
+                                                "bulan":{
+                                                    "type": "integer"
+                                                },
+                                                "employee_id" : {
+                                                    "type": "integer"
+                                                },
+                                                "gaji_pokok" :{
+                                                    "type": "integer"
+                                                },
+                                                "tambahan" :{
+                                                    "type": "integer"
+                                                },
+                                                "potongan" :{
+                                                    "type": "integer"
+                                                },
+                                                "total" :{
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get" : {
+                "description": "Get All Gaji",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "Success Get All Gaji",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "properties": {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "tahun": {
+                                                    "type": "integer"
+                                                },
+                                                "bulan":{
+                                                    "type": "integer"
+                                                },
+                                                "employee_id" : {
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
+                                        },
+                                        "meta" :{
+                                            "type":"object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/gaji/{id}":{
+            "put" : {
+                "description": "Update Gaji",
+                "parameters": [
+                    {
+                        "name" : "Authorization",
+                        "in" : "header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update Gaji",
+                    "content": {
+                        "application/json" : {
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "tahun": {
+                                        "type": "integer"
+                                    },
+                                    "bulan":{
+                                        "type": "integer"
+                                    },
+                                    "employee_id" : {
+                                        "type": "integer"
+                                    },
+                                    "gaji_pokok" :{
+                                        "type": "integer"
+                                    },
+                                    "tambahan" :{
+                                        "type": "integer"
+                                    },
+                                    "potongan" :{
+                                        "type": "integer"
+                                    },
+                                    "total" :{
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success update Gaji",
+                        "content": {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" :"object",
+                                    "properties": {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "tahun": {
+                                                    "type": "integer"
+                                                },
+                                                "bulan":{
+                                                    "type": "integer"
+                                                },
+                                                "employee_id" : {
+                                                    "type": "integer"
+                                                },
+                                                "gaji_pokok" :{
+                                                    "type": "integer"
+                                                },
+                                                "tambahan" :{
+                                                    "type": "integer"
+                                                },
+                                                "potongan" :{
+                                                    "type": "integer"
+                                                },
+                                                "total" :{
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "description": "Get Gaji",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200" : {
+                        "description": "Success Get Gaji",
+                        "content": {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" :"object",
+                                    "properties": {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "tahun": {
+                                                    "type": "integer"
+                                                },
+                                                "bulan":{
+                                                    "type": "integer"
+                                                },
+                                                "employee_id" : {
+                                                    "type": "integer"
+                                                },
+                                                "gaji_pokok" :{
+                                                    "type": "integer"
+                                                },
+                                                "tambahan" :{
+                                                    "type": "integer"
+                                                },
+                                                "potongan" :{
+                                                    "type": "integer"
+                                                },
+                                                "total" :{
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete" : {
+                "description": "Remove Gaji",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in" :"header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200" :{
+                        "description": "Success Remove Gaji",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type":"object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "boolean"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/gaji/{employee_id}":{
+            "get": {
+                "description": "Get Gaji",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "employee_id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200" : {
+                        "description": "Success Get Gaji",
+                        "content": {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" :"object",
+                                    "properties": {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "tahun": {
+                                                    "type": "integer"
+                                                },
+                                                "bulan":{
+                                                    "type": "integer"
+                                                },
+                                                "employee_id" : {
+                                                    "type": "integer"
+                                                },
+                                                "gaji_pokok" :{
+                                                    "type": "integer"
+                                                },
+                                                "tambahan" :{
+                                                    "type": "integer"
+                                                },
+                                                "potongan" :{
+                                                    "type": "integer"
+                                                },
+                                                "total" :{
+                                                    "type": "integer"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,711 @@
+
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Employee Data API",
+        "version": "1.0.0",
+        "description": "API documentation for Employee Data"
+    },
+    "servers": [
+        {"url":"http://localhost"}
+    ],
+    "paths": {
+        "/employee-data": {
+            "post" : {
+                "description": "Create new Employee Data",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "requestBody":{
+                    "description": "Create New Employee Data",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "employee_id": {
+                                        "type": "string"
+                                    },
+                                    "kelamin":{
+                                        "type": "string"
+                                    },
+                                    "tempat_lahir":{
+                                        "type": "string"
+                                    },
+                                    "tanggal_lahir":{
+                                        "type": "string"
+                                    },
+                                    "nik" :{
+                                        "type": "string"
+                                    },
+                                    "provinsi" :{
+                                        "type": "string"
+                                    },
+                                    "kabupaten" :{
+                                        "type": "string"
+                                    },
+                                    "kecamatan" :{
+                                        "type": "string"
+                                    },
+                                    "alamat_jalan" :{
+                                        "type": "string"
+                                    },
+                                    "pendidikan_terkhir":{
+                                        "type": "string"
+                                    },
+                                    "id_pendidikan" :{
+                                        "type": "integer"
+                                    },
+                                    "jurusan" : {
+                                        "type": "string"
+                                    },
+                                    "no_hp" :{
+                                        "type": "string"
+                                    },
+                                    "status_kawin" :{
+                                        "type": "string"
+                                    },
+                                    "pasangan" :{
+                                        "type": "string"
+                                    },
+                                    "jumlah_anak" :{
+                                        "type": "integer"
+                                    },
+                                    "wali":{
+                                        "type": "string"
+                                    },
+                                    "no_hp_wali" :{
+                                        "type": "string"
+                                    },
+                                    "email" :{
+                                        "type": "string"
+                                    },
+                                    "bpjs_tk" :{
+                                        "type": "string"
+                                    },
+                                    "bpjs_kes" :{
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201" :{
+                        "description": "Success Create Employee Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "employee_id": {
+                                                    "type": "string"
+                                                },
+                                                "kelamin":{
+                                                    "type": "string"
+                                                },
+                                                "tempat_lahir":{
+                                                    "type": "string"
+                                                },
+                                                "tanggal_lahir":{
+                                                    "type": "string"
+                                                },
+                                                "nik" :{
+                                                    "type": "string"
+                                                },
+                                                "provinsi" :{
+                                                    "type": "string"
+                                                },
+                                                "kabupaten" :{
+                                                    "type": "string"
+                                                },
+                                                "kecamatan" :{
+                                                    "type": "string"
+                                                },
+                                                "alamat_jalan" :{
+                                                    "type": "string"
+                                                },
+                                                "pendidikan_terkhir":{
+                                                    "type": "string"
+                                                },
+                                                "id_pendidikan" :{
+                                                    "type": "integer"
+                                                },
+                                                "jurusan" : {
+                                                    "type": "string"
+                                                },
+                                                "no_hp" :{
+                                                    "type": "string"
+                                                },
+                                                "status_kawin" :{
+                                                    "type": "string"
+                                                },
+                                                "pasangan" :{
+                                                    "type": "string"
+                                                },
+                                                "jumlah_anak" :{
+                                                    "type": "integer"
+                                                },
+                                                "wali":{
+                                                    "type": "string"
+                                                },
+                                                "no_hp_wali" :{
+                                                    "type": "string"
+                                                },
+                                                "email" :{
+                                                    "type": "string"
+                                                },
+                                                "bpjs_tk" :{
+                                                    "type": "string"
+                                                },
+                                                "bpjs_kes" :{
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/employee-data/{id}":{
+            "put" : {
+                "description": "Update Employee Data",
+                "parameters": [
+                    {
+                        "name" : "Authorization",
+                        "in" : "header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Update Employee Data",
+                    "content": {
+                        "application/json" : {
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success update Employee Data",
+                        "content": {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" :"object",
+                                    "properties": {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "employee_id": {
+                                                    "type": "string"
+                                                },
+                                                "kelamin":{
+                                                    "type": "string"
+                                                },
+                                                "tempat_lahir":{
+                                                    "type": "string"
+                                                },
+                                                "tanggal_lahir":{
+                                                    "type": "string"
+                                                },
+                                                "nik" :{
+                                                    "type": "string"
+                                                },
+                                                "provinsi" :{
+                                                    "type": "string"
+                                                },
+                                                "kabupaten" :{
+                                                    "type": "string"
+                                                },
+                                                "kecamatan" :{
+                                                    "type": "string"
+                                                },
+                                                "alamat_jalan" :{
+                                                    "type": "string"
+                                                },
+                                                "pendidikan_terkhir":{
+                                                    "type": "string"
+                                                },
+                                                "id_pendidikan" :{
+                                                    "type": "integer"
+                                                },
+                                                "jurusan" : {
+                                                    "type": "string"
+                                                },
+                                                "no_hp" :{
+                                                    "type": "string"
+                                                },
+                                                "status_kawin" :{
+                                                    "type": "string"
+                                                },
+                                                "pasangan" :{
+                                                    "type": "string"
+                                                },
+                                                "jumlah_anak" :{
+                                                    "type": "integer"
+                                                },
+                                                "wali":{
+                                                    "type": "string"
+                                                },
+                                                "no_hp_wali" :{
+                                                    "type": "string"
+                                                },
+                                                "email" :{
+                                                    "type": "string"
+                                                },
+                                                "bpjs_tk" :{
+                                                    "type": "string"
+                                                },
+                                                "bpjs_kes" :{
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete" : {
+                "description": "Remove Employee Data",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in" :"header"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200" :{
+                        "description": "Success Remove Employee Data",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type":"object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "boolean"
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/employee-data/current" : {
+            "get" : {
+                "description": "Get current Employee Data",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200" : {
+                        "description": "Success get current user",
+                        "content": {
+                            "application/json":{
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "employee_id": {
+                                                    "type": "string"
+                                                },
+                                                "kelamin":{
+                                                    "type": "string"
+                                                },
+                                                "tempat_lahir":{
+                                                    "type": "string"
+                                                },
+                                                "tanggal_lahir":{
+                                                    "type": "string"
+                                                },
+                                                "nik" :{
+                                                    "type": "string"
+                                                },
+                                                "provinsi" :{
+                                                    "type": "string"
+                                                },
+                                                "kabupaten" :{
+                                                    "type": "string"
+                                                },
+                                                "kecamatan" :{
+                                                    "type": "string"
+                                                },
+                                                "alamat_jalan" :{
+                                                    "type": "string"
+                                                },
+                                                "pendidikan_terkhir":{
+                                                    "type": "string"
+                                                },
+                                                "id_pendidikan" :{
+                                                    "type": "integer"
+                                                },
+                                                "jurusan" : {
+                                                    "type": "string"
+                                                },
+                                                "no_hp" :{
+                                                    "type": "string"
+                                                },
+                                                "status_kawin" :{
+                                                    "type": "string"
+                                                },
+                                                "pasangan" :{
+                                                    "type": "string"
+                                                },
+                                                "jumlah_anak" :{
+                                                    "type": "integer"
+                                                },
+                                                "wali":{
+                                                    "type": "string"
+                                                },
+                                                "no_hp_wali" :{
+                                                    "type": "string"
+                                                },
+                                                "email" :{
+                                                    "type": "string"
+                                                },
+                                                "bpjs_tk" :{
+                                                    "type": "string"
+                                                },
+                                                "bpjs_kes" :{
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch" :{
+                "description":"Update current Employee Data",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    }
+                ],
+                "requestBody":{
+                    "description": "Update current Employee Data",
+                    "content": {
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties": {
+                                    "employee_id": {
+                                        "type": "string"
+                                    },
+                                    "kelamin":{
+                                        "type": "string"
+                                    },
+                                    "tempat_lahir":{
+                                        "type": "string"
+                                    },
+                                    "tanggal_lahir":{
+                                        "type": "string"
+                                    },
+                                    "nik" :{
+                                        "type": "string"
+                                    },
+                                    "provinsi" :{
+                                        "type": "string"
+                                    },
+                                    "kabupaten" :{
+                                        "type": "string"
+                                    },
+                                    "kecamatan" :{
+                                        "type": "string"
+                                    },
+                                    "alamat_jalan" :{
+                                        "type": "string"
+                                    },
+                                    "pendidikan_terkhir":{
+                                        "type": "string"
+                                    },
+                                    "id_pendidikan" :{
+                                        "type": "integer"
+                                    },
+                                    "jurusan" : {
+                                        "type": "string"
+                                    },
+                                    "no_hp" :{
+                                        "type": "string"
+                                    },
+                                    "status_kawin" :{
+                                        "type": "string"
+                                    },
+                                    "pasangan" :{
+                                        "type": "string"
+                                    },
+                                    "jumlah_anak" :{
+                                        "type": "integer"
+                                    },
+                                    "wali":{
+                                        "type": "string"
+                                    },
+                                    "no_hp_wali" :{
+                                        "type": "string"
+                                    },
+                                    "email" :{
+                                        "type": "string"
+                                    },
+                                    "bpjs_tk" :{
+                                        "type": "string"
+                                    },
+                                    "bpjs_kes" :{
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200" :{
+                        "description": "Success update Employee Data",
+                        "content": {
+                            "application/json" :{
+                                "schema":{
+                                    "type": "object",
+                                    "properties": {
+                                        "data":{
+                                            "type" : "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "employee_id": {
+                                                    "type": "string"
+                                                },
+                                                "kelamin":{
+                                                    "type": "string"
+                                                },
+                                                "tempat_lahir":{
+                                                    "type": "string"
+                                                },
+                                                "tanggal_lahir":{
+                                                    "type": "string"
+                                                },
+                                                "nik" :{
+                                                    "type": "string"
+                                                },
+                                                "provinsi" :{
+                                                    "type": "string"
+                                                },
+                                                "kabupaten" :{
+                                                    "type": "string"
+                                                },
+                                                "kecamatan" :{
+                                                    "type": "string"
+                                                },
+                                                "alamat_jalan" :{
+                                                    "type": "string"
+                                                },
+                                                "pendidikan_terkhir":{
+                                                    "type": "string"
+                                                },
+                                                "id_pendidikan" :{
+                                                    "type": "integer"
+                                                },
+                                                "jurusan" : {
+                                                    "type": "string"
+                                                },
+                                                "no_hp" :{
+                                                    "type": "string"
+                                                },
+                                                "status_kawin" :{
+                                                    "type": "string"
+                                                },
+                                                "pasangan" :{
+                                                    "type": "string"
+                                                },
+                                                "jumlah_anak" :{
+                                                    "type": "integer"
+                                                },
+                                                "wali":{
+                                                    "type": "string"
+                                                },
+                                                "no_hp_wali" :{
+                                                    "type": "string"
+                                                },
+                                                "email" :{
+                                                    "type": "string"
+                                                },
+                                                "bpjs_tk" :{
+                                                    "type": "string"
+                                                },
+                                                "bpjs_kes" :{
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors" : {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/employee-data/{employee_id}":{
+            "get": {
+                "description": "Get Employee Data",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "name": "employee_id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200" : {
+                        "description": "Success Get Employee Data",
+                        "content": {
+                            "application/json" : {
+                                "schema" : {
+                                    "type" :"object",
+                                    "properties": {
+                                        "data" :{
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "employee_id": {
+                                                    "type": "string"
+                                                },
+                                                "kelamin":{
+                                                    "type": "string"
+                                                },
+                                                "tempat_lahir":{
+                                                    "type": "string"
+                                                },
+                                                "tanggal_lahir":{
+                                                    "type": "string"
+                                                },
+                                                "nik" :{
+                                                    "type": "string"
+                                                },
+                                                "provinsi" :{
+                                                    "type": "string"
+                                                },
+                                                "kabupaten" :{
+                                                    "type": "string"
+                                                },
+                                                "kecamatan" :{
+                                                    "type": "string"
+                                                },
+                                                "alamat_jalan" :{
+                                                    "type": "string"
+                                                },
+                                                "pendidikan_terkhir":{
+                                                    "type": "string"
+                                                },
+                                                "id_pendidikan" :{
+                                                    "type": "integer"
+                                                },
+                                                "jurusan" : {
+                                                    "type": "string"
+                                                },
+                                                "no_hp" :{
+                                                    "type": "string"
+                                                },
+                                                "status_kawin" :{
+                                                    "type": "string"
+                                                },
+                                                "pasangan" :{
+                                                    "type": "string"
+                                                },
+                                                "jumlah_anak" :{
+                                                    "type": "integer"
+                                                },
+                                                "wali":{
+                                                    "type": "string"
+                                                },
+                                                "no_hp_wali" :{
+                                                    "type": "string"
+                                                },
+                                                "email" :{
+                                                    "type": "string"
+                                                },
+                                                "bpjs_tk" :{
+                                                    "type": "string"
+                                                },
+                                                "bpjs_kes" :{
+                                                    "type": "string"
+                                                }
+                                            }
+                                        },
+                                        "errors" :{
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+}
