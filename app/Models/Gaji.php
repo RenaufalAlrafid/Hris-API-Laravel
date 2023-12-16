@@ -5,25 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Jabatan extends Model
+class Gaji extends Model
 {
     use HasFactory;
-    protected $table = 'jabatans';
+    protected $table = "gajis";
     protected $primaryKey = "id";
     protected $keyType = "int";
     public $incrementing = true;
     public $timestamps = true;
     protected $fillable = [
-        "name"
+        "tahun",
+        "bulan",
+        "employee_id",
+        "gaji_pokok",
+        "tambahan",
+        "potongan",
+        "total"
     ];
+    // Relasi ke tabel Employee
 
-    public function divisi() : BelongsTo {
-        return $this->belongsTo(divisi::class, "divisi_id", "id");
-    }
-
-    public function users() : HasMany {
-        return $this->hasMany(User::class, "jabatan_id", "id");
+    public function employee() : BelongsTo {
+        return $this->belongsTo(Employee::class, "employee_id", "id");
     }
 }
