@@ -115,21 +115,21 @@
                         "in": "header"
                     },
                     {
-                        "name": "username",
+                        "name": "search",
                         "in": "query"
                     },
                     {
-                        "name": "email",
+                        "name": "page",
                         "in": "query"
                     },
                     {
-                        "name": "Jabatan",
+                        "name": "size",
                         "in": "query"
                     }
                 ],
                 "responses": {
                     "200" : {
-                        "description": "Success get current user",
+                        "description": "Success search user",
                         "content": {
                             "application/json":{
                                 "schema": {

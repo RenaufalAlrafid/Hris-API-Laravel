@@ -20,7 +20,7 @@ return new class extends Migration
                 "users_token_unique"
             );
             $table->unsignedBigInteger("jabatan_id")->nullable(false);
-            $table->boolean('validation')->nullable(false);
+            $table->boolean('validation')->nullable(false)->default(false);
             $table->timestamps();
             $table->foreign("jabatan_id")->on("jabatans")->references("id");
         });

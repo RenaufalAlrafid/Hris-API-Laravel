@@ -16,7 +16,10 @@ class Jabatan extends Model
     public $incrementing = true;
     public $timestamps = true;
     protected $fillable = [
-        "name"
+        "name",
+        "divisi_id",
+        "atasan",
+        "validator",
     ];
 
     public function divisi() : BelongsTo {
