@@ -124,7 +124,7 @@ class UserController extends Controller
 
     public function getuser(Request $request) : UserCollection {
         if ($request->input('query') ) {
-            $user = User::where('username', 'like', '%' . $request['query'] . '%')->orWhere('email', 'like', '%' . $request['query'] . '%');
+            $user = User::where('username', 'like', '%' . $request['query'] . '%')->orWhere('email', 'like', '%' . $request['query'] . '%')->orderby('id', 'asc');
         } else {
             $user = User::orderby('id', 'asc');
         }

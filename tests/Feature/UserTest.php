@@ -40,7 +40,7 @@ class UserTest extends TestCase
         $this->post('/users/login', [
             "password" => "coba123",
             "email" => $email,
-        ])->assertStatus(200)->assertJson([
+        ])->ssertStatus(200)->assertJson([
             "data" => [
                 "username" => $username,
                 "email" => $email,
@@ -130,7 +130,6 @@ class UserTest extends TestCase
     public function testUpdatePasswordSuccess()
     {
         $this->seed([UserSeeder::class]);
-
         $username = fake()->name();
         $email = fake()->email();
         $token = Str::uuid()->toString();

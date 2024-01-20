@@ -33,4 +33,9 @@ Route::middleware(ApiValidatorMiddleware::class)->group(function () {
     Route::get('/users', [\App\Http\Controllers\UserController::class,'getuser' ]);
     Route::patch('/users/validation/{id}', [\App\Http\Controllers\UserController::class, 'changeuservalidation'])->where('id', '[0-9]+');
     Route::patch('/users/change-jabatan/{id}', [\App\Http\Controllers\UserController::class, 'changejabatan'])->where('id', '[0-9]+');
+    Route::get('/divisi', [\App\Http\Controllers\DivisiController::class,'index']);
+    Route::post('/divisi', [\App\Http\Controllers\DivisiController::class,'store']);
+    Route::get('/divisi/{id}', [\App\Http\Controllers\DivisiController::class,'show']);
+    Route::patch('/divisi/update/{id}', [\App\Http\Controllers\DivisiController::class,'update']);
+    Route::delete('/divisi/delete/{id}', [\App\Http\Controllers\DivisiController::class,'destroy']);
 });
