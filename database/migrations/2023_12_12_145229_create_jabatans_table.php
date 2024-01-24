@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('jabatans', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable(false)->unique('jabatans_name_unique');
+            $table->string("name")->nullable(false);
             $table->boolean("atasan")->nullable(false);
             $table->boolean('validator')->nullable(false);
             $table->unsignedBigInteger('divisi_id')->nullable(false);

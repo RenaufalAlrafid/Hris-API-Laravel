@@ -38,4 +38,9 @@ Route::middleware(ApiValidatorMiddleware::class)->group(function () {
     Route::get('/divisi/{id}', [\App\Http\Controllers\DivisiController::class,'show']);
     Route::patch('/divisi/update/{id}', [\App\Http\Controllers\DivisiController::class,'update']);
     Route::delete('/divisi/delete/{id}', [\App\Http\Controllers\DivisiController::class,'destroy']);
+    Route::get('/jabatan', [\App\Http\Controllers\JabatanController::class,'index']);
+    Route::post('/jabatan', [\App\Http\Controllers\JabatanController::class,'store']);
+    Route::get('/jabatan/{id}', [\App\Http\Controllers\JabatanController::class,'show']);
+    Route::patch('/jabatan/update/{id}', [\App\Http\Controllers\JabatanController::class,'update']);
+    Route::delete('/jabatan/delete/{id}', [\App\Http\Controllers\JabatanController::class,'destroy']);
 });
