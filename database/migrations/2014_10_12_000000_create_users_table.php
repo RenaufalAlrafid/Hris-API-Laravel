@@ -17,8 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('verification')->nullable(false)->default(false);
+            $table->unsignedBigInteger('jabatan_id')->nullable(true);
             $table->rememberToken();
             $table->timestamps();
+
+
+            $table->foreign('jabatan_id')->references('id')->on('jabatan')->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 
