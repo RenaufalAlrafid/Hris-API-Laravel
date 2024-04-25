@@ -39,6 +39,13 @@ Route::group([
         Route::put('divisi/{id}', [App\Http\Controllers\DivisiController::class, 'update']);
         Route::delete('divisi/{id}', [App\Http\Controllers\DivisiController::class, 'destroy']);
 
+        Route::get('jabatan', [App\Http\Controllers\JabatanController::class, 'index']);
+        Route::get('jabatan/{id}', [App\Http\Controllers\JabatanController::class, 'show']);
+        Route::post('jabatan', [App\Http\Controllers\JabatanController::class, 'store']);
+        Route::put('jabatan/{id}', [App\Http\Controllers\JabatanController::class, 'update']);
+        Route::delete('jabatan/{id}', [App\Http\Controllers\JabatanController::class, 'destroy']);
+        
+
         
     });
 
