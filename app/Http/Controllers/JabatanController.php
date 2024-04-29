@@ -8,7 +8,8 @@ use App\Http\Resources\JabatanCollection;
 use App\Http\Resources\JabatanResource;
 use App\Models\Divisi;
 use App\Models\Jabatan;
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 
 class JabatanController extends Controller
@@ -21,9 +22,9 @@ class JabatanController extends Controller
         $Jabatan = Jabatan::query()->where(function(Builder $query) use ($request) {
             
 
-            $nama = $request->input('nama');
-            if ($nama) {
-                $query->where('nama', 'like', "%$nama%");
+            $name = $request->input('name');
+            if ($name) {
+                $query->where('name', 'like', "%$name%");
             }
         });
 
@@ -35,7 +36,7 @@ class JabatanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(JabatanStoreRequest $request)
+    public function store(JabatanStoreRequest $request) : JabatanResource
     {
         $data = $request->validated();
 
@@ -43,32 +44,32 @@ class JabatanController extends Controller
         $divisi = Divisi::find($data['divisi_id']);
 
         if (!$divisi) {
-            return response()->json([
+            throw new HttpResponseException(response([
                 "message" => "Divisi tidak ditemukan"
-            ], 404);
+            ], 404));
         }
 
         // check if same name exists
-        $sameName = Jabatan::where('nama', $data['nama'])->first();
+        $sameName = Jabatan::where('name', $data['name'])->first();
 
         if ($sameName) {
-            return response()->json([
+            throw new HttpResponseException(response([
                 "message" => "Jabatan dengan nama yang sama sudah ada"
-            ], 400);
+            ], 400));
         }
 
         // check if atasan exists
 
         if($data['atasan'] != 0){
             $atasan = Jabatan::where('divisi_id', $data['divisi_id'])->where('atasan', $data['atasan'])->first();
-            if (!$atasan) {
-                return response()->json([
+            if ($atasan) {
+                throw new HttpResponseException(response([
                     "message" => "Atasan Pada Divisi Tersebut Sudah Ada"
-                ], 404);
+                ], 404));
             }
         }
         $Jabatan = Jabatan::create($data);
-        return response()->json($Jabatan, 201);
+        return new JabatanResource($Jabatan);
     }
 
     /**
@@ -79,9 +80,9 @@ class JabatanController extends Controller
         $Jabatan = Jabatan::find($id);
 
         if (!$Jabatan) {
-            return response()->json([
+            throw new HttpResponseException(response([
                 "message" => "Jabatan tidak ditemukan"
-            ], 404);
+            ], 404));
         }
 
         return new JabatanResource($Jabatan);
@@ -93,48 +94,52 @@ class JabatanController extends Controller
      */
     public function update(JabatanUpdateRequest $request, Int $id) : JabatanResource
     {
+
         $Jabatan = Jabatan::find($id);
 
         if (!$Jabatan) {
-            return response()->json([
+            throw new HttpResponseException(response([
                 "message" => "Jabatan tidak ditemukan"
-            ], 404);
+            ], 404));
         }
 
         $data = $request->validated();
+        // dd($data);
 
         // check if divisi exists
         if (isset($data['divisi_id'])) {
             $divisi = Divisi::find($data['divisi_id']);
 
             if (!$divisi) {
-                return response()->json([
+                throw new HttpResponseException(response([
                     "message" => "Divisi tidak ditemukan"
-                ], 404);
+                ], 404));
             }
 
             $Jabatan->divisi_id = $data['divisi_id'];
         }
 
         // check if same name exists
-        if (isset($data['nama'])) {
-            $sameName = Jabatan::where('nama', $data['nama'])->first();
+        if (isset($data['name'])) {
+            $sameName = Jabatan::where('name', $data['name'])->where('id' , '!=', $Jabatan->id)->first();
 
             if ($sameName) {
-                return response()->json([
-                    "message" => "Jabatan dengan nama yang sama sudah ada"
-                ], 400);
+                throw new HttpResponseException(response([
+                    "message" => "Jabatan dengan name yang sama sudah ada"
+                ], 400));
             }
+
+            $Jabatan->name = $data['name'];
         }
 
         // check if atasan exists
         if (isset($data['atasan'])) {
             if($data['atasan'] != 0){
                 $atasan = Jabatan::where('divisi_id', $data['divisi_id'])->where('atasan', $data['atasan'])->first();
-                if (!$atasan) {
-                    return response()->json([
+                if ($atasan) {
+                    throw new HttpResponseException(response([
                         "message" => "Atasan Pada Divisi Tersebut Sudah Ada"
-                    ], 404);
+                    ], 404));
                 }
             }
 

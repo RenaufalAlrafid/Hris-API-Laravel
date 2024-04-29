@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Divisi;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,11 +17,10 @@ class JabatanResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'divisi' => $this->divisi,
             'name' => $this->name,
             'validator' => $this->validator,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+            'atasan' => $this->atasan,
+            'divisi' => DivisiResource::make($this->divisi),
         ];
     }
 }

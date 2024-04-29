@@ -24,7 +24,7 @@ class JabatanUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama' => ['string', 'max:255', 'nullable'],
+            'name' => ['string', 'max:255', 'nullable'],
             'divisi_id' => ['integer', 'nullable'],
             'atasan' => ['boolean', 'nullable'],
             'validator' => ['boolean', 'nullable'],
@@ -39,7 +39,7 @@ class JabatanUpdateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nama.required' => 'Nama jabatan wajib diisi',
+            'name.required' => 'Nama jabatan wajib diisi',
             'divisi_id.required' => 'Divisi wajib diisi',
             'atasan.required' => 'Atasan wajib diisi',
             'validator.required' => 'Validator wajib diisi',

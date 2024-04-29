@@ -20,8 +20,6 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'jabatan' => $this->jabatan->name ?? null,
             'jabatan_id' => $this->jabatan_id ?? null,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
         ];
     }
 }

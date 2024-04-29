@@ -24,7 +24,7 @@ class JabatanStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
             'divisi_id' => ['required', 'integer'],
             'atasan' => ['required', 'boolean'],
             'validator' => ['required', 'boolean'],
@@ -39,7 +39,7 @@ class JabatanStoreRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nama.required' => 'Nama jabatan wajib diisi',
+            'name.required' => 'Nama jabatan wajib diisi',
             'divisi_id.required' => 'Divisi wajib diisi',
             'atasan.required' => 'Atasan wajib diisi',
             'validator.required' => 'Validator wajib diisi',
