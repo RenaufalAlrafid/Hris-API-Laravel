@@ -6,6 +6,7 @@ use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
+use App\Models\Employee;
 use App\Models\Jabatan;
 use App\Models\User;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -417,9 +418,6 @@ class UserController extends Controller
         if($request->password) {
             $data->password = Hash::make($request->password);
         }
-        if($request->verification) {
-            $data->verification = $request->verification;
-        }
         if($request->jabatan_id) {
             $jabatan = Jabatan::where('id', $request->jabatan_id)->first();
             if(!$jabatan) {
@@ -485,6 +483,45 @@ class UserController extends Controller
         }
 
         $data->delete();
+        return new UserResource($data);
+    }
+
+
+    public function valrification(Request $request, Int $id) {
+
+        $validatedData = $request->validate([
+            'verification' => 'required|boolean',
+            'tanggal_masuk' => 'nullable|string',
+            'status' => 'nullable|string',
+        ]);
+        $data = User::where('id', $id)->first();
+
+        if(!$data) {
+            return new HttpResponseException(response([
+                "errors" => "Data not found"
+            ], 404));
+        }
+
+        $data->verification = $validatedData['verification'];
+        $data->save();
+
+        $employee = Employee::where('user_id', $id)->first();
+
+        if (!$employee) {
+            $employee = new Employee();
+            $employee->user_id = $id;
+            if($validatedData['status']) {
+                $employee->status = $validatedData['status'];
+            } else {
+                $employee->status = 'Pegawai Tetap';
+            }
+            if($validatedData['tanggal_masuk']) {
+                $employee->tanggal_masuk = $validatedData['tanggal_masuk'];
+            } else {
+                $employee->tanggal_masuk = date('Y-m-d');
+            }
+            $employee->save();
+        }
         return new UserResource($data);
     }
 }

@@ -25,6 +25,10 @@ Route::group([
     Route::post('refresh', [UserController::class, 'refresh']);
     Route::post('me', [UserController::class, 'me']);
 
+    Route::post('employee', [App\Http\Controllers\EmployeeController::class, 'store']);
+    Route::get('employee/me', [App\Http\Controllers\EmployeeController::class, 'me']);
+    Route::put('employee/{id}', [App\Http\Controllers\EmployeeController::class, 'update']);
+
 
     Route::middleware(IsAdmin::class)->group(function () {
         Route::get('users', [App\Http\Controllers\UserController::class, 'index']);
@@ -32,6 +36,7 @@ Route::group([
         Route::post('users', [App\Http\Controllers\UserController::class, 'store']);
         Route::put('users/{id}', [App\Http\Controllers\UserController::class, 'update']);
         Route::delete('users/{id}', [App\Http\Controllers\UserController::class, 'destroy']);
+        Route::get('users/{id}/verification', [App\Http\Controllers\UserController::class, 'verification']);
 
         Route::get('divisi', [App\Http\Controllers\DivisiController::class, 'index']);
         Route::get('divisi/{id}', [App\Http\Controllers\DivisiController::class, 'show']);
@@ -44,9 +49,11 @@ Route::group([
         Route::post('jabatan', [App\Http\Controllers\JabatanController::class, 'store']);
         Route::put('jabatan/{id}', [App\Http\Controllers\JabatanController::class, 'update']);
         Route::delete('jabatan/{id}', [App\Http\Controllers\JabatanController::class, 'destroy']);
-        
 
-        
+
+        Route::get('employee', [App\Http\Controllers\EmployeeController::class, 'index']);
+        Route::get('employee/{id}', [App\Http\Controllers\EmployeeController::class, 'show']);
+        Route::delete('employee/{id}', [App\Http\Controllers\EmployeeController::class, 'destroy']);
     });
 
 });

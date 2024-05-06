@@ -71,4 +71,8 @@ class User extends Authenticatable implements JWTSubject
     public function jabatan() : BelongsTo {
         return $this->belongsTo(Jabatan::class, 'jabatan_id', 'id');
     }
+
+    public function employee() : BelongsTo {
+        return $this->belongsTo(Employee::class, 'id', 'user_id');
+    }
 }

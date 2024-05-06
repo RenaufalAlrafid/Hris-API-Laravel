@@ -27,7 +27,6 @@ class UserUpdateRequest extends FormRequest
             'name' => 'nullable|string',
             'email' => 'nullable|email|unique:users,email',
             'password' => 'nullable|string|min:6',
-            'verification' => 'nullable|boolean',
             'jabatan_id' => 'nullable|exists:jabatan,id'
         ];
     }
