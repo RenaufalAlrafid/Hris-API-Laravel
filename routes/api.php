@@ -30,6 +30,14 @@ Route::group([
     Route::put('employee/{id}', [App\Http\Controllers\EmployeeController::class, 'update']);
 
 
+    Route::get('cuti', [App\Http\Controllers\CutiController::class, 'index']);
+    Route::get('cuti/{id}', [App\Http\Controllers\CutiController::class, 'show']);
+    Route::post('cuti', [App\Http\Controllers\CutiController::class, 'store']);
+    Route::put('cuti/{id}', [App\Http\Controllers\CutiController::class, 'update']);
+    Route::delete('cuti/{id}', [App\Http\Controllers\CutiController::class, 'destroy']);
+
+
+
     Route::middleware(IsAdmin::class)->group(function () {
         Route::get('users', [App\Http\Controllers\UserController::class, 'index']);
         Route::get('users/{id}', [App\Http\Controllers\UserController::class, 'get']);
@@ -54,6 +62,13 @@ Route::group([
         Route::get('employee', [App\Http\Controllers\EmployeeController::class, 'index']);
         Route::get('employee/{id}', [App\Http\Controllers\EmployeeController::class, 'show']);
         Route::delete('employee/{id}', [App\Http\Controllers\EmployeeController::class, 'destroy']);
+
+
+        Route::get('gaji', [App\Http\Controllers\GajiController::class, 'index']);
+        Route::get('gaji/{id}', [App\Http\Controllers\GajiController::class, 'show']);
+        Route::post('gaji', [App\Http\Controllers\GajiController::class, 'store']);
+        Route::put('gaji/{id}', [App\Http\Controllers\GajiController::class, 'update']);
+        Route::delete('gaji/{id}', [App\Http\Controllers\GajiController::class, 'destroy']);
     });
 
 });
