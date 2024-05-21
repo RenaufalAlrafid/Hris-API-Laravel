@@ -20,7 +20,8 @@ class UserSeeder extends Seeder
             "email" => "menager@email.com",
             "password" => Hash::make("password"),
             "jabatan_id" => 1,
-            "verification" => 1
+            "verification" => 1,
+            "email_verified_at" => now()
         ]);
 
         User::create([
@@ -28,7 +29,7 @@ class UserSeeder extends Seeder
             "email" => "ketua@email.com",
             "password" => Hash::make("password"),
             "jabatan_id" => 2,
-            "verification" => 1
+            "verification" => 1,
         ]);
 
         User::create([
@@ -36,7 +37,7 @@ class UserSeeder extends Seeder
             "email" => "staff@email.com",
             "password" => Hash::make("password"),
             "jabatan_id" => 3,
-        "verification" => 1
+            "email_verified_at" => now()
         ]);
     }
 }

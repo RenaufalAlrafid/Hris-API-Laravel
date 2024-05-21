@@ -56,4 +56,20 @@ class Employee extends Model
         // Assuming the relationship between Employee and Jabatan is through the User model
         return $this->user->jabatan();
     }
+
+
+    public function divisi(): BelongsTo {
+        // Assuming the relationship between Employee and Divisi is through the User model
+        return $this->user->jabatan->divisi();
+    }
+
+
+    public function cuti() {
+        return $this->hasMany(Cuti::class, "employee_id", "id");
+    }
+
+    public function gaji() {
+        return $this->hasMany(Gaji::class, "employee_id", "id");
+    }
+    
 }

@@ -22,7 +22,6 @@ return new class extends Migration
             $table->boolean('approve_atasan')->nullable(true)->default(false);
             $table->timestamps();
             $table->foreign("employee_id")->on("employee")->references("id")->cascadeOnDelete();
-            $table->timestamps();
         });
     }
 

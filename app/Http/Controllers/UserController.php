@@ -6,12 +6,15 @@ use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserCollection;
 use App\Http\Resources\UserResource;
+use App\Mail\VerificationMail;
 use App\Models\Employee;
 use App\Models\Jabatan;
 use App\Models\User;
+use Dotenv\Util\Str;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -22,9 +25,54 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', "verificationEmail", "register"]]);
     }
 
+    public function register(UserStoreRequest $request) : UserResource {
+        
+        if($request->jabatan_id) {
+            $jabatan = Jabatan::where('id', $request->jabatan_id)->first();
+            if(!$jabatan) {
+                throw new HttpResponseException(response([
+                    "errors" => "Jabatan not found"
+                ], 404));
+            }
+            if($jabatan->atasan == true) {
+                $user = User::where('jabatan_id', $request->jabatan_id)->first();
+                if($user) {
+                    throw new HttpResponseException(response([
+                        "errors" => "Error Tidak Bisa Pakai Jabatan"
+                    ], 400));
+                }
+            }
+        }
+
+        $verification_email_token = $request->email . $request->name;
+
+
+        $data = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'verification_email_token' => Hash::make($verification_email_token),
+            'verification' => 0,
+        ]);
+
+        if($request->jabatan_id) {
+            $data->jabatan_id = $request->jabatan_id;
+            $data->save();
+        }
+
+        $mailData = [
+            'name' => $data->name,
+            'code' => $data->verification_email_token
+        ];
+
+        Mail::to($request->email)->send(new VerificationMail($mailData));
+
+
+        return new UserResource($data);
+    }
 
 
     /**
@@ -152,7 +200,6 @@ class UserController extends Controller
         return $this->respondWithToken(auth()->refresh());
     }
 
-    
     protected function respondWithToken($token)
     {
         return response()->json([
@@ -194,7 +241,7 @@ class UserController extends Controller
      * )
      */
     public function index() : UserCollection {
-        $data = User::all();
+        $data = User::where('email_verified_at', '!=', null)->get();
         return new UserCollection($data);
     }
 
@@ -312,7 +359,7 @@ class UserController extends Controller
                 $user = User::where('jabatan_id', $request->jabatan_id)->first();
                 if($user) {
                     throw new HttpResponseException(response([
-                        "errors" => "Jabatan Atasan Sudah Terisi"
+                        "errors" => "Error Tidak Bisa Pakai Jabatan"
                     ], 400));
                 }
             }
@@ -323,13 +370,21 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'verification' => 1,
+            'verification' => 0,
         ]);
 
         if($request->jabatan_id) {
             $data->jabatan_id = $request->jabatan_id;
             $data->save();
         }
+
+        $mailData = [
+            'name' => $data->name,
+            'email' => $data->email,
+            'id' => Hash::make($data->id)
+        ];
+
+        Mail::to($request->email)->send(new VerificationMail($data));
 
 
         return new UserResource($data);
@@ -487,7 +542,7 @@ class UserController extends Controller
     }
 
 
-    public function valrification(Request $request, Int $id) {
+    public function verification(Request $request, Int $id) {
 
         $validatedData = $request->validate([
             'verification' => 'required|boolean',
@@ -523,5 +578,21 @@ class UserController extends Controller
             $employee->save();
         }
         return new UserResource($data);
+    }
+
+
+    public function verificationEmail(Request $request) {
+        $code = $request->code;
+        $data = User::where('verification_email_token', $code)->first();
+
+        if(!$data) {
+            return new HttpResponseException(response([
+                "errors" => "Data not found"
+            ], 404));
+        }
+
+        $data->email_verified_at = date('Y-m-d H:i:s');
+        $data->save();
+        return redirect()->away('http://localhost:3000/login');
     }
 }
