@@ -17,5 +17,25 @@ class DivisiSeeder extends Seeder
         Divisi::create([
             "name" => "IT"
         ]);
+
+        Divisi::create([
+            "name" => "HRD"
+        ]);
+
+        Divisi::create([
+            "name" => "Finance"
+        ]);
+
+        Divisi::create([
+            "name" => "Marketing"
+        ]);
+
+        Divisi::create([
+            "name" => "Operational"
+        ]);
+
+        Divisi::create([
+            "name" => "Production"
+        ]);
     }
 }

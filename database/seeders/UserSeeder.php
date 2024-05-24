@@ -15,29 +15,49 @@ class UserSeeder extends Seeder
     public function run(): void
     {
 
-        User::create([
-            "name" => "Manager IT",
-            "email" => "menager@email.com",
-            "password" => Hash::make("password"),
-            "jabatan_id" => 1,
-            "verification" => 1,
-            "email_verified_at" => now()
-        ]);
+        // User::create([
+        //     "name" => "Manager IT",
+        //     "email" => "menager@email.com",
+        //     "password" => Hash::make("password"),
+        //     "jabatan_id" => 1,
+        //     "verification" => 1,
+        //     "email_verified_at" => now()
+        // ]);
 
-        User::create([
-            "name" => "Ketua Staff IT",
-            "email" => "ketua@email.com",
-            "password" => Hash::make("password"),
-            "jabatan_id" => 2,
-            "verification" => 1,
-        ]);
+        // make all user from jabatan
 
-        User::create([
-            "name" => "Staff IT",
-            "email" => "staff@email.com",
-            "password" => Hash::make("password"),
-            "jabatan_id" => 3,
-            "email_verified_at" => now()
-        ]);
+
+        $jabatan = [
+            "Manager",
+            "Ketua Staff",
+            "Staff"
+        ];
+
+        $divisi = [
+            "IT",
+            "HRD",
+            "Finance",
+            "Marketing",
+            "Operational",
+            "Production"
+        ];
+
+        $faker = \Faker\Factory::create();
+
+
+
+        foreach ($divisi as $key => $value) {
+            foreach ($jabatan as $key2 => $value2) {
+                $random_name = $faker->name;
+                User::create([
+                    "name" => $random_name,
+                    "email" => strtolower(str_replace(" ", "", $value2 . $value)) . "@email.com",
+                    "password" => Hash::make("hris1234"),
+                    "jabatan_id" => $key * 3 + $key2 + 1,
+                    "verification" => 1,
+                    "email_verified_at" => now()
+                ]);
+            }
+        }
     }
 }
